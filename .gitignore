@@ -7,3 +7,6 @@ Thumbs.db
 *.log
 .env
 .env.*
+
+# Local Claude Code instructions
+CLAUDE.md
