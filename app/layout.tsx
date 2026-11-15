@@ -24,7 +24,7 @@ const footerLinks = [
   { label: "email", href: "mailto:eesa.ali02@gmail.com" },
   { label: "linkedin", href: "https://www.linkedin.com/in/eesa-ali" },
   { label: "github", href: "https://github.com/eesaali02" },
-  { label: "resume", href: "/assets/Eesa_Ali_Resume_Portfolio.pdf" },
+  { label: "resume", href: "/assets/Eesa_Ali_Resume.pdf" },
 ];
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

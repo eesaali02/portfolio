@@ -44,7 +44,7 @@ export default function Nav() {
           })}
           <li>
             <a
-              href="/assets/Eesa_Ali_Resume_Portfolio.pdf"
+              href="/assets/Eesa_Ali_Resume.pdf"
               download
               className="text-muted no-underline hover:text-ink hover:underline hover:underline-offset-[3px]"
             >
