@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+/* Palette "blue ink", light and dark.
+   The theme is set by data-theme="light" | "dark" on <html> (see the script in app/layout.tsx
+   and components/ThemeToggle.tsx). Without JavaScript, the system setting decides. */
+:root {
+  color-scheme: light;
+  --bg: #F7F5EF;
+  --ink: #1F2A44;
+  --muted: #5C6578;
+  --link: #3B5B8C;
+  --rule: #DCE1E8;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #151A24;
+    --ink: #E6E8EE;
+    --muted: #9AA3B5;
+    --link: #93B2E2;
+    --rule: #2A3242;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #151A24;
+  --ink: #E6E8EE;
+  --muted: #9AA3B5;
+  --link: #93B2E2;
+  --rule: #2A3242;
+}
+
+/* Tailwind colour utilities (bg-bg, text-ink, ...) read the variables above. */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-link: var(--link);
+  --color-rule: var(--rule);
+
+  --font-mono: var(--font-plex), "Courier New", monospace;
+}
+
+/* Typed page title (the <Typed> MDX component).
+   The font is monospace, so 1ch is exactly one character: widening the box in steps reveals one letter at a time. */
+.typed {
+  --type-speed: 90ms;
+  --type-delay: 300ms;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: bottom;
+  width: calc(var(--chars) * 1ch);
+  animation: typing calc(var(--chars) * var(--type-speed)) steps(var(--chars)) var(--type-delay) both;
+}
+
+/* The cursor stays solid while typing, then pulses. */
+.cursor {
+  display: inline-block;
+  width: 2px;
+  height: 0.95em;
+  margin-left: 4px;
+  vertical-align: -0.12em;
+  background: currentColor;
+  animation: pulse 0.9s ease-in-out calc(300ms + var(--chars) * 90ms) infinite alternate;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+}
+
+@keyframes pulse {
+  to {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typed,
+  .cursor {
+    animation: none;
+  }
+}
+
+/* No extra gap between a page title and the first section heading */
+main h1 + h2 {
+  margin-top: 0;
+}
+
+/* Page content fades in block by block after the title starts typing (each paragraph, list or heading
+   directly inside <main>). --i is the block's position; each one starts 50ms after the previous. */
+main > :not(h1) {
+  --i: 24;
+  animation: rise 400ms ease-out calc(800ms + (var(--i) - 2) * 50ms) both;
+}
+main > :nth-child(2) { --i: 2; }
+main > :nth-child(3) { --i: 3; }
+main > :nth-child(4) { --i: 4; }
+main > :nth-child(5) { --i: 5; }
+main > :nth-child(6) { --i: 6; }
+main > :nth-child(7) { --i: 7; }
+main > :nth-child(8) { --i: 8; }
+main > :nth-child(9) { --i: 9; }
+main > :nth-child(10) { --i: 10; }
+main > :nth-child(11) { --i: 11; }
+main > :nth-child(12) { --i: 12; }
+main > :nth-child(13) { --i: 13; }
+main > :nth-child(14) { --i: 14; }
+main > :nth-child(15) { --i: 15; }
+main > :nth-child(16) { --i: 16; }
+main > :nth-child(17) { --i: 17; }
+main > :nth-child(18) { --i: 18; }
+main > :nth-child(19) { --i: 19; }
+main > :nth-child(20) { --i: 20; }
+main > :nth-child(21) { --i: 21; }
+main > :nth-child(22) { --i: 22; }
+main > :nth-child(23) { --i: 23; }
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  main > :not(h1) {
+    animation: none;
+  }
+}

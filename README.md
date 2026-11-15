@@ -1,20 +1,48 @@
 # Eesa Ali Portfolio
 
-Personal portfolio site built with plain HTML, CSS and JavaScript. There is no build step.
+Personal portfolio site built with Next.js, Tailwind CSS and MDX, exported as a static site.
 
 ## Run locally
 
-Open `index.html` in a browser, or serve the folder:
+```
+npm install
+npm run dev      # http://localhost:3000, reloads on save
+```
+
+## Build
 
 ```
-npx serve .
+npm run build    # writes the static site to out/
+npm start        # serves out/ locally to check the build
 ```
 
-## Structure
+For Cloudflare Pages: build command `npm run build`, output directory `out`.
+
+## Editing content
+
+Each page is a Markdown (MDX) file in `app/`:
 
 ```
-index.html       Page content and sections
-css/styles.css   Styles; design tokens are at the top in :root
-js/main.js       Mobile menu, active nav link, footer year
-assets/          Images, resume and other static files
+app/page.mdx              home
+app/experience/page.mdx   experience and toolbox
+app/projects/page.mdx     projects
+app/education/page.mdx    education and certifications
+app/bookshelf/page.mdx    books
+app/watchlist/page.mdx    shows and films
+app/now/page.mdx          what I'm up to now
+```
+
+Two extra tags work in any page:
+
+- `<Meta>...</Meta>`: the small grey line under a heading (company, dates, tech).
+- `<Item title="..." by="..." note="..." />`: a book or film entry; `by` is optional.
+
+Other files:
+
+```
+app/layout.tsx        shared header, footer, font and page titles
+components/Nav.tsx    the nav links
+mdx-components.tsx    how headings, lists, links etc. are styled
+app/globals.css       colour tokens
+public/assets/        resume PDF
 ```
