@@ -16,7 +16,7 @@ npm run build    # writes the static site to out/
 npm start        # serves out/ locally to check the build
 ```
 
-For Cloudflare Pages: build command `npm run build`, output directory `out`.
+Hosted on Cloudflare Workers: build command `npm run build`, deploy command `npx wrangler deploy` (config in `wrangler.jsonc`, which serves `out/`).
 
 ## Editing content
 

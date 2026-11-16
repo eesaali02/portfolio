@@ -1,0 +1,10 @@
+// Cloudflare Workers config: serves the static export in out/ (built by `npm run build`). No server code.
+{
+  "name": "portfolio",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./out",
+    // Unknown addresses get out/404.html (app/not-found.mdx) with a 404 status.
+    "not_found_handling": "404-page"
+  }
+}
