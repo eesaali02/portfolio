@@ -14,9 +14,9 @@ const description =
   "Eesa Ali, an aspiring solutions engineer with an Advanced Diploma in IT Innovation and Design from Conestoga College and CompTIA Network+.";
 
 export const metadata: Metadata = {
-  // Link previews need the full site address: set SITE_URL (e.g. https://yourdomain.com) as a build variable in
-  // Cloudflare. CF_PAGES_URL only exists on Cloudflare Pages; the site is hosted on Workers (wrangler.jsonc).
-  metadataBase: new URL(process.env.SITE_URL ?? process.env.CF_PAGES_URL ?? "http://localhost:3000"),
+  // Link previews need the site's full public address. Change this when the custom domain goes live.
+  // (A SITE_URL build variable, if set in Cloudflare, overrides it.)
+  metadataBase: new URL(process.env.SITE_URL || "https://portfolio.eesa-ali02.workers.dev"),
   // Every page's tab just says "eesa ali".
   title: "eesa ali",
   description,
