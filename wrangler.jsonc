@@ -2,6 +2,13 @@
 {
   "name": "portfolio",
   "compatibility_date": "2026-11-01",
+  // Serve only at the custom domain (eesaali.com), not at portfolio.<account>.workers.dev. This also turns off preview URLs.
+  "workers_dev": false,
+  // The custom domains (also added in the Cloudflare dashboard). www is redirected to the root by a zone redirect rule.
+  "routes": [
+    { "pattern": "eesaali.com", "custom_domain": true },
+    { "pattern": "www.eesaali.com", "custom_domain": true }
+  ],
   "assets": {
     "directory": "./out",
     // Unknown addresses get out/404.html (app/not-found.mdx) with a 404 status.
