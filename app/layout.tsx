@@ -10,11 +10,19 @@ const plex = IBM_Plex_Mono({
   variable: "--font-plex",
 });
 
+const description =
+  "Eesa Ali, an aspiring solutions engineer with an Advanced Diploma in IT Innovation and Design from Conestoga College and CompTIA Network+.";
+
 export const metadata: Metadata = {
+  // Link previews need the full site address. Set SITE_URL (e.g. https://yourdomain.com) in the Cloudflare Pages
+  // build settings once the custom domain is live; until then Cloudflare's own CF_PAGES_URL is used.
+  metadataBase: new URL(process.env.SITE_URL ?? process.env.CF_PAGES_URL ?? "http://localhost:3000"),
   // Every page's tab just says "eesa ali".
   title: "eesa ali",
-  description:
-    "Eesa Ali, an aspiring solutions engineer with an Advanced Diploma in IT Innovation and Design from Conestoga College and CompTIA Network+.",
+  description,
+  // The preview image itself is app/opengraph-image.png, which Next.js links automatically.
+  openGraph: { title: "eesa ali", description, type: "website" },
+  twitter: { card: "summary_large_image" },
 };
 
 // Runs before the page paints: use the visitor's saved choice, else dark (the default for first-time visitors).
