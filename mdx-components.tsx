@@ -40,14 +40,27 @@ const components: MDXComponents = {
       <a href={href} className={className} {...props} />
     );
   },
-  Meta: (props) => <p className="mb-1 text-[12px] text-muted" {...props} />,
+  // Collapsible section, closed by default: <More label="more (5)"> ... </More>
+  // The toggle reads `label` while closed and "less" while open (pass openLabel to change it).
+  More: ({ label, openLabel = "less", children }: { label: string; openLabel?: string; children: React.ReactNode }) => (
+    <details className="group mb-5">
+      <summary className="mb-4 cursor-pointer list-none text-[13px] text-muted hover:text-ink hover:underline hover:underline-offset-[3px] [&::-webkit-details-marker]:hidden">
+        <span className="group-open:hidden">{label} ↓</span>
+        <span className="hidden group-open:inline">{openLabel} ↑</span>
+      </summary>
+      {children}
+    </details>
+  ),
+  // Meta and Item render block-level <span>s, not <p>s: MDX puts a tag that sits right under a line of text
+  // (no blank line between) inside that line's <p>, and a <p> inside a <p> is invalid HTML.
+  Meta: (props) => <span className="mb-1 block text-[12px] text-muted" {...props} />,
   // A book or film: <Item title="..." by="..." note="★★★★☆ · one-line take" /> (`by` is optional)
   Item: ({ title, by, note }: { title: string; by?: string; note?: string }) => (
-    <p className="mb-4">
+    <span className="mb-4 block">
       <strong className="font-bold">{title}</strong>
       {by && <> by {by}</>}
       {note && <span className="block text-[12px] text-muted">{note}</span>}
-    </p>
+    </span>
   ),
 };
 

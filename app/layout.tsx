@@ -17,8 +17,9 @@ export const metadata: Metadata = {
     "Eesa Ali, an aspiring solutions engineer with an Advanced Diploma in IT Innovation and Design from Conestoga College and CompTIA Network+.",
 };
 
-// Runs before the page paints: use the saved choice, else the system setting. Prevents a flash of the wrong theme.
-const themeScript = `(function(){try{var t=localStorage.getItem("theme");if(t!=="light"&&t!=="dark"){t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}document.documentElement.dataset.theme=t}catch(e){}})()`;
+// Runs before the page paints: use the visitor's saved choice, else dark (the default for first-time visitors).
+// Prevents a flash of the wrong theme.
+const themeScript = `(function(){try{var t=localStorage.getItem("theme");document.documentElement.dataset.theme=t==="light"?"light":"dark"}catch(e){}})()`;
 
 const footerLinks = [
   { label: "email", href: "mailto:eesa.ali02@gmail.com" },
@@ -34,7 +35,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body className="bg-bg font-mono leading-[1.7] text-[14px] text-ink antialiased">
+      {/* suppressHydrationWarning: browser extensions (Grammarly, password managers, etc.) add attributes to
+          <body> before React loads. This only ignores attribute differences on <body> itself. */}
+      <body className="bg-bg font-mono leading-[1.7] text-[14px] text-ink antialiased" suppressHydrationWarning>
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:bg-bg focus:px-3 focus:py-2"

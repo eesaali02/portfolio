@@ -1,35 +1,24 @@
 @import "tailwindcss";
 
-/* Palette "blue ink", light and dark.
-   The theme is set by data-theme="light" | "dark" on <html> (see the script in app/layout.tsx
-   and components/ThemeToggle.tsx). Without JavaScript, the system setting decides. */
+/* Palette "blue ink". Dark is the default for everyone; light applies only after a visitor picks it
+   with the toggle (data-theme="light" on <html>, set by the script in app/layout.tsx and
+   components/ThemeToggle.tsx). */
 :root {
-  color-scheme: light;
-  --bg: #F7F5EF;
-  --ink: #1F2A44;
-  --muted: #5C6578;
-  --link: #3B5B8C;
-  --rule: #DCE1E8;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    color-scheme: dark;
-    --bg: #151A24;
-    --ink: #E6E8EE;
-    --muted: #9AA3B5;
-    --link: #93B2E2;
-    --rule: #2A3242;
-  }
-}
-
-:root[data-theme="dark"] {
   color-scheme: dark;
   --bg: #151A24;
   --ink: #E6E8EE;
   --muted: #9AA3B5;
   --link: #93B2E2;
   --rule: #2A3242;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #F7F5EF;
+  --ink: #1F2A44;
+  --muted: #5C6578;
+  --link: #3B5B8C;
+  --rule: #DCE1E8;
 }
 
 /* Tailwind colour utilities (bg-bg, text-ink, ...) read the variables above. */
@@ -79,10 +68,14 @@
   }
 }
 
+/* Reduced motion: show the title fully typed, with no cursor. */
 @media (prefers-reduced-motion: reduce) {
-  .typed,
-  .cursor {
+  .typed {
     animation: none;
+  }
+
+  .cursor {
+    display: none;
   }
 }
 

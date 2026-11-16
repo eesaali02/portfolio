@@ -9,22 +9,9 @@ type Theme = "light" | "dark";
 export default function ThemeToggle() {
   const [theme, setTheme] = useState<Theme | null>(null);
 
+  // Dark unless the visitor has picked light.
   useEffect(() => {
-    const root = document.documentElement;
-    setTheme(root.dataset.theme === "dark" ? "dark" : "light");
-
-    // Follow system changes until the visitor picks a theme themselves.
-    const media = window.matchMedia("(prefers-color-scheme: dark)");
-    const onSystemChange = (event: MediaQueryListEvent) => {
-      try {
-        if (localStorage.getItem("theme")) return;
-      } catch {}
-      const next: Theme = event.matches ? "dark" : "light";
-      root.dataset.theme = next;
-      setTheme(next);
-    };
-    media.addEventListener("change", onSystemChange);
-    return () => media.removeEventListener("change", onSystemChange);
+    setTheme(document.documentElement.dataset.theme === "light" ? "light" : "dark");
   }, []);
 
   function toggle() {
