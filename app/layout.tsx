@@ -14,9 +14,9 @@ const description =
   "Eesa Ali, an aspiring solutions engineer with an Advanced Diploma in IT Innovation and Design from Conestoga College and CompTIA Network+.";
 
 export const metadata: Metadata = {
-  // Link previews need the site's full public address. Change this when the custom domain goes live.
+  // Link previews need the site's full public address: the custom domain. Change this if the domain changes.
   // (A SITE_URL build variable, if set in Cloudflare, overrides it.)
-  metadataBase: new URL(process.env.SITE_URL || "https://portfolio.eesa-ali02.workers.dev"),
+  metadataBase: new URL(process.env.SITE_URL || "https://eesaali.com"),
   // Every page's tab just says "eesa ali".
   title: "eesa ali",
   description,
