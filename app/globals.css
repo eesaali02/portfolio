@@ -41,8 +41,11 @@
   overflow: hidden;
   white-space: nowrap;
   vertical-align: bottom;
-  width: calc(var(--chars) * 1ch);
-  animation: typing calc(var(--chars) * var(--type-speed)) steps(var(--chars)) var(--type-delay) both;
+  /* No fixed width: once typing ends, the title sizes to its text. A fixed width in ch clipped the last letter on
+     some phones, where 1ch can come out a hair narrower than a letter. */
+  width: auto;
+  /* backwards (not both): hold the empty start during the delay, but release the width when typing ends. */
+  animation: typing calc(var(--chars) * var(--type-speed)) steps(var(--chars)) var(--type-delay) backwards;
 }
 
 /* The cursor stays solid while typing, then pulses. */
@@ -59,6 +62,9 @@
 @keyframes typing {
   from {
     width: 0;
+  }
+  to {
+    width: calc(var(--chars) * 1ch);
   }
 }
 
